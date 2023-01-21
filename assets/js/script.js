@@ -10,16 +10,14 @@ prevValues = JSON.parse(localStorage.getItem('values'));
 
 for (let i = 0; i < workHours.length; i++) {
     // const element = array[i];
-        var AmOrPm = workHours[i] >= 12 ? 'PM' : 'AM';
-        var hour = (workHours[i] % 12) || 12;
         // console.log(prevValues);
         if (prevValues) {
-            row = printDailyPlannerData(hour, prevValues[i]);  
-            dailyPlanner.append(row); 
+            printDailyPlannerData(workHours[i], prevValues[i]);  
+            // dailyPlanner.append(row); 
         }
         else{
-            row = printDailyPlannerData(hour,' ');
-            dailyPlanner.append(row);
+            printDailyPlannerData(workHours[i],'');
+            // dailyPlanner.append(row);
         }
         // printDailyPlannerData(hour,'abc');
     
@@ -63,12 +61,24 @@ for (let i = 0; i < workHours.length; i++) {
 
 function printDailyPlannerData(hour, prevValue) {
     var dailyPlannerRowEl = $('<tr>');
-  
-    var hourTdEl = $('<td>').addClass('p-2').text(hour);
+    if (currentHour > hour) {
+        dailyPlannerRowEl.addClass('past');  
+    }
+    else if(currentHour == hour){
+        dailyPlannerRowEl.addClass('present');
+    }
+    else{
+        dailyPlannerRowEl.addClass('future');
+    }
+    var AmOrPm = hour >= 12 ? 'PM' : 'AM';
+    var hour12 = (hour % 12) || 12; 
+
+    var hourTdEl = $('<td>').addClass('p-2').text(hour12+AmOrPm);
   
     var inputTdEl = $('<td>').addClass('p-2');  
     
     var inputDataField = $('<input>').addClass('inputData').val(prevValue);
+    inputDataField.attr('name','name[]')
     inputTdEl.append(inputDataField);
 
     var saveTdEl = $('<td>').addClass('p-2');
@@ -88,16 +98,16 @@ function printDailyPlannerData(hour, prevValue) {
     dailyPlanner.append(dailyPlannerRowEl);
   }
 
-// function saveLocalStorage(event) {
-//     // console.log(event.target);
-//     var values = $('input[name="name[]"]').map(function(){
-//         return this.value;
-//      }).get();
-//      localStorage.setItem('values',JSON.stringify(values));
+function saveLocalStorage(event) {
+    // console.log(event.target);
+    var values = $('input[name="name[]"]').map(function(){
+        return this.value;
+     }).get();
+     localStorage.setItem('values',JSON.stringify(values));
      
-//     //  console.log(localStorage.getItem('values'));
-//   }
-//   $("button").on( "click", saveLocalStorage);
+    //  console.log(localStorage.getItem('values'));
+  }
+  $("button").on( "click", saveLocalStorage);
 
 
 

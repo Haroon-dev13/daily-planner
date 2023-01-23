@@ -13,7 +13,7 @@ This is a Event schedule web application.It shows some working hours on page.It 
 Given below is the screen short of example output.
 
 * ### Daily Planner Output:
-![Daily Planner](images/Daily-Planner.png)
+![Daily Planner](assets/images/daily-planner.png)
 
 ## Credits
 N/A

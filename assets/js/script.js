@@ -40,9 +40,9 @@ function printDailyPlannerData(hour, prevValue) {
     inputDataField.attr('value',prevValue);
     inputTdEl.append(inputDataField);
 
-    var saveTdEl = $('<td>').addClass('p-2');
+    var saveTdEl = $('<td>').addClass('p-2 saveTd');
   
-    var saveDataBtn = $('<button>').addClass('btn btn-danger saveBtn');
+    var saveDataBtn = $('<button>').addClass('btn saveBtn');
     var saveIcon = $('<i>').addClass('fa fa-save');
     saveDataBtn.append(saveIcon);
     saveTdEl.append(saveDataBtn);

@@ -41,6 +41,9 @@ input {
   color: #000000;
   border-top: 1px dashed #000000;
 }
+.saveTd{
+  background-color: #ffffff;
+}
 
 .past {
   background-color: #d3d3d3;

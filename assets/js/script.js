@@ -35,8 +35,9 @@ function printDailyPlannerData(hour, prevValue) {
   
     var inputTdEl = $('<td>').addClass('p-2');  
     
-    var inputDataField = $('<textarea>').addClass('desciption').val(prevValue);
-    inputDataField.attr('name','name[]')
+    var inputDataField = $('<input>').addClass('desciption').val(prevValue);
+    inputDataField.attr('name','event[]')
+    inputDataField.attr('value',prevValue);
     inputTdEl.append(inputDataField);
 
     var saveTdEl = $('<td>').addClass('p-2');
@@ -57,18 +58,16 @@ function printDailyPlannerData(hour, prevValue) {
   }
 
 function saveLocalStorage(event) {
-    // console.log(event.target);
-    var values = $('textarea[name="name[]"]').map(function(){
+    var values = $('input[name="event[]"]').map(function(){
         return this.value;
      }).get();
+
      localStorage.setItem('values',JSON.stringify(values));
   }
+
+
+
   $("button").on( "click", saveLocalStorage);
-
-
-
-
-
 
 
 
@@ -77,4 +76,4 @@ function displayDate() {
     currentDay.text(date);
 }
 
-// setInterval(displayDate,1000);
+setInterval(displayDate,1000);
